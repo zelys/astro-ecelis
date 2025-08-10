@@ -1,0 +1,243 @@
+---
+// Contact.astro
+const contactItems = [
+  {
+    icon: 'fas fa-envelope',
+    title: 'E-Mail',
+    value: 'elias.celis@example.com',
+    href: 'mailto:elias.celis@example.com'
+  },
+  {
+    icon: 'fab fa-linkedin',
+    title: 'LinkedIn',
+    value: 'linkedin.com/in/eliascelis',
+    href: 'https://linkedin.com/in/eliascelis'
+  },
+  {
+    icon: 'fab fa-github',
+    title: 'GitHub',
+    value: 'github.com/zelys',
+    href: 'https://github.com/zelys'
+  },
+  {
+    icon: 'fas fa-map-marker-alt',
+    title: 'Ubicación',
+    value: 'Santiago, Chile',
+    href: null
+  }
+];
+---
+
+<section id="contacto" class="section-gradient">
+  <div class="container">
+    <h2>Contacto</h2>
+    <div class="contact-grid">
+      <!-- Formulario de contacto -->
+      <div class="contact-form">
+        <h3>Envíame un mensaje</h3>
+        <form action="https://formspree.io/f/xanblrnp" method="POST" id="contact-form">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Asunto</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="contact-info">
+        <h3>Información de Contacto</h3>
+        
+        {contactItems.map((item) => (
+          <div class="contact-item">
+            <i class={item.icon}></i>
+            <div>
+              <strong>{item.title}</strong>
+              <br />
+              {item.href ? (
+                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
+                  {item.value}
+                </a>
+              ) : (
+                <span>{item.value}</span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 5rem 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    color: var(--text-primary);
+  }
+
+  h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-blue);
+    margin: 1rem auto 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .contact-form,
+  .contact-info {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--bg-primary);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .contact-item:hover {
+    transform: translateX(5px);
+  }
+
+  .contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    width: 24px;
+    text-align: center;
+  }
+
+  .contact-item a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-item a:hover {
+    color: var(--primary-blue);
+  }
+
+  .contact-item span {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding: 3rem 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

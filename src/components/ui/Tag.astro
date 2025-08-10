@@ -1,0 +1,40 @@
+---
+// Tag.astro - Componente para etiquetas de tecnología
+export interface Props {
+  text: string;
+  variant?: 'primary' | 'secondary';
+}
+
+const { text, variant = 'primary' } = Astro.props;
+---
+
+<span class={`tag tag-${variant}`}>
+  {text}
+</span>
+
+<style>
+  .tag {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .tag-primary {
+    background: var(--primary-blue);
+    color: white;
+  }
+
+  .tag-secondary {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--primary-blue);
+  }
+
+  .tag:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+</style>

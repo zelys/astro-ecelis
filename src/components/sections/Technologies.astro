@@ -1,0 +1,139 @@
+---
+// Technologies.astro
+import Tag from '../ui/Tag.astro';
+
+const techCategories = [
+  {
+    title: 'Lenguajes de Programación',
+    icon: 'fas fa-code',
+    technologies: ['Java', 'Python', 'JavaScript', 'C#', 'C++']
+  },
+  {
+    title: 'Frameworks & Librerías',
+    icon: 'fas fa-layer-group',
+    technologies: ['Spring', '.NET', 'Pandas', 'Matplotlib']
+  },
+  {
+    title: 'Bases de Datos',
+    icon: 'fas fa-database',
+    technologies: ['MySQL', 'PostgreSQL', 'SQLite', 'SQL Server']
+  },
+  {
+    title: 'Tecnologías Web',
+    icon: 'fas fa-globe',
+    technologies: ['HTML5', 'CSS3', 'Bootstrap', 'Astro']
+  },
+  {
+    title: 'Tecnologías de Apoyo',
+    icon: 'fas fa-gear',
+    technologies: ['Docker', 'Git', 'GitHub']
+  }
+];
+---
+
+<section id="tecnologias" class="section-primary">
+  <div class="container">
+    <h2>Especialización & Tecnologías</h2>
+    <div class="tech-grid">
+      {techCategories.map((category) => (
+        <div class="tech-category">
+          <h4>
+            <i class={category.icon}></i>
+            {category.title}
+          </h4>
+          <div class="tech-tags">
+            {category.technologies.map((tech) => (
+              <Tag text={tech} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 5rem 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    color: var(--text-primary);
+  }
+
+  h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-blue);
+    margin: 1rem auto 0;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .tech-category {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .tech-category.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tech-category:hover {
+    transform: translateY(-5px);
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  h4 i {
+    color: var(--primary-blue);
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding: 3rem 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

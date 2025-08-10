@@ -1,0 +1,61 @@
+---
+// index.astro - Página principal refactorizada
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Education from '../components/sections/Education.astro';
+import Technologies from '../components/sections/Technologies.astro';
+import Projects from '../components/sections/Projects.astro';
+import Contact from '../components/sections/Contact.astro';
+---
+
+<Layout title="Elias Celis - Analista Programador Computacional">
+  <Hero />
+  <Education />
+  <Technologies />
+  <Projects />
+  <Contact />
+</Layout>
+
+<script>
+  // Importar y ejecutar todas las funcionalidades
+  import { initTheme } from '../scripts/theme.js';
+  import { initSmoothScroll, initBackToTop, initParallax } from '../scripts/scroll.js';
+  import { fetchGitHubProjects } from '../scripts/github-api.js';
+  import { initScrollAnimations, initTypingEffect } from '../scripts/animations.js';
+  import { initFormHandler } from '../scripts/form-handler.js';
+
+  // Inicializar todas las funcionalidades cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tema
+    initTheme();
+    
+    // Scroll y navegación
+    initSmoothScroll();
+    initBackToTop();
+    initParallax();
+    
+    // Proyectos de GitHub
+    fetchGitHubProjects();
+    
+    // Animaciones
+    initScrollAnimations();
+    initTypingEffect();
+    
+    // Formulario
+    initFormHandler();
+    
+    // Actualizar año en el footer automáticamente
+    const currentYear = new Date().getFullYear();
+    const footerText = document.querySelector('footer p');
+    if (footerText) {
+      footerText.textContent = footerText.textContent.replace('2025', String(currentYear));
+    }
+
+    // Preload de imágenes importantes
+    const criticalImages = ['/img/photo.webp'];
+    criticalImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  });
+</script>

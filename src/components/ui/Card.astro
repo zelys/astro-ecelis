@@ -1,0 +1,45 @@
+---
+// Card.astro - Componente reutilizable para tarjetas
+export interface Props {
+  className?: string;
+  hover?: boolean;
+}
+
+const { className = '', hover = true } = Astro.props;
+---
+
+<div class={`card ${className} ${hover ? 'hover-effect' : ''}`}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
+  }
+
+  :global([data-theme="dark"]) .card.hover-effect:hover {
+    box-shadow: 0 8px 16px -4px rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      padding: 1.5rem;
+    }
+  }
+</style>

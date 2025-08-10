@@ -1,0 +1,208 @@
+---
+// Projects.astro
+---
+
+<section id="proyectos">
+  <div class="container">
+    <h2>Proyectos</h2>
+    <div id="github-projects" class="projects-container">
+      <!-- Los proyectos se cargarán dinámicamente con JavaScript -->
+      <div class="project-item loading-project">
+        <div class="project-header">
+          <div class="project-title-section">
+            <i class="fab fa-github project-icon"></i>
+            <h3 class="project-title">Cargando proyectos...</h3>
+          </div>
+        </div>
+        <p class="project-description">
+          Obteniendo información de los repositorios desde GitHub...
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 5rem 0;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    color: var(--text-primary);
+  }
+
+  h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-blue);
+    margin: 1rem auto 0;
+  }
+
+  :global(.projects-container) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  :global(.project-item) {
+    height: 100%;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  :global(.project-item.animate-in) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  :global(.project-item:hover) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(.loading-project) {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  :global(.project-header) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  :global(.project-icon) {
+    font-size: 2rem;
+    margin-right: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  :global(.project-title) {
+    color: var(--primary-blue);
+    font-size: 8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  :global(.project-description) {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  :global(.project-meta) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  :global(.project-language) {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  :global(.project-stats) {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  :global(.stat-item) {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  :global(.stat-item i) {
+    font-size: 1rem;
+  }
+
+  :global(.project-actions) {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  :global(.github-btn) {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+  }
+
+  :global(.github-btn:hover) {
+    background: var(--primary-blue);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding: 3rem 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    :global(.projects-container) {
+      gap: 1.5rem;
+    }
+
+    :global(.project-item) {
+      padding: 1.5rem;
+    }
+
+    :global(.project-title-section) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    :global(.project-icon) {
+      font-size: 2rem;
+    }
+
+    :global(.project-title) {
+      font-size: 1.5rem;
+    }
+
+    :global(.project-meta) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    :global(.project-stats) {
+      gap: 1rem;
+    }
+  }
+</style>

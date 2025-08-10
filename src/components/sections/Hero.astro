@@ -1,0 +1,103 @@
+---
+// Hero.astro
+---
+
+<section id="inicio" class="hero-section section-gradient">
+  <div class="container">
+    <div class="hero-content">
+      <img src="/img/photo.webp" alt="Elias Celis" class="profile-image" />
+      <div class="hero-text">
+        <h1>Elias Celis</h1>
+        <p class="subtitle">Analista Programador Computacional</p>
+        <p class="description">
+          Profesional titulado en Chile con sólida formación en desarrollo de software y análisis de sistemas. Especializado en crear soluciones tecnológicas eficientes y escalables, con experiencia en múltiples lenguajes de programación y frameworks modernos.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 1; /* Asegurar que esté por encima del fondo */
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid var(--primary-blue);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .profile-image:hover {
+    transform: scale(1.05);
+  }
+
+  .hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .hero-text .subtitle {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .hero-text .description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding-top: 6rem;
+      padding-bottom: 3rem;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.1rem;
+    }
+  }
+</style>
